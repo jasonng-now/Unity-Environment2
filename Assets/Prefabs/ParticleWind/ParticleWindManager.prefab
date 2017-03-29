@@ -51,11 +51,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0398162e6bd5669408eb69c6a935d200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PDWidth: 50
-  PDHeight: 50
-  PDR: 12
+  PDWidth: 25
+  PDHeight: 25
+  PDRadius: 7
   preFabObjects:
   - {fileID: 1000012562439060, guid: 7201f0b22d1dc4e4fb1a9970f6c97eb5, type: 2}
   itemCount: 0
   scalar: 100
   timescalar: 15
+  sceneScale: 1
+  isRunning: 1

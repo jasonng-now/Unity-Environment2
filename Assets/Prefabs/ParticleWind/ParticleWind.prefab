@@ -157,7 +157,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012562439060}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27d684be66b6ab44aba1538fc4a75f99, type: 3}
   m_Name: 
@@ -169,7 +169,6 @@ MonoBehaviour:
   shapeScalar: 500
   useVelocity: 0
   velocityScalar: 100
-  audioclip: {fileID: 0}
 --- !u!198 &198000010076235152
 ParticleSystem:
   m_ObjectHideFlags: 1
