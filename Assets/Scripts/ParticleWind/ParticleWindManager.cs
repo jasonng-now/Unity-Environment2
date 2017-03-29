@@ -12,17 +12,15 @@ public class ParticleWindManager: MonoBehaviour
     private int PDHeight = 50;
     [SerializeField]
     private float PDRadius = 11;
+    [SerializeField]
+    private GameObject preFab;
+    [SerializeField]
+    private int itemCount;
 
-    public GameObject[] preFabObjects;
-    public int itemCount;
-    public float scalar = 100F;
-    public float timescalar = 15F;
-
+    // Private
     private GameObject[] allBoids;
     public float sceneScale = 1F;
     public bool isRunning = true;
-    private float currentRange = 0;
-    private string range = "c1";
 
     // Use this for initialization
     void Start()
@@ -39,25 +37,17 @@ public class ParticleWindManager: MonoBehaviour
         {
             if (ordered[i] != Vector2.zero)
             {
-                int randomIndex = Random.Range(0, preFabObjects.Length);
-                GameObject currentObject = preFabObjects[randomIndex];
+                GameObject currentObject = preFab;
                 
-
                 // Position
-                Vector3 pos = new Vector3(ordered[i].x * sceneScale, gameObject.transform.position.y, ordered[i].y * sceneScale);
+                Vector3 pos = new Vector3(ordered[i].x * sceneScale, Random.Range(gameObject.transform.position.y - 5, gameObject.transform.position.y + 5), ordered[i].y * sceneScale);
 
                 // Rotation
                 Vector3 rotation = new Vector3(currentObject.transform.localRotation.x, Random.Range(0, 360), currentObject.transform.localRotation.z);
 
-                // Scale
-                float currentScale = 1F;
-                //currentObject.transform.localScale = new Vector3(currentScale * sceneScale, currentScale * sceneScale, currentScale * sceneScale);
-                //currentObject.transform.localScale = new Vector3(currentScale, currentScale, currentScale);
                 GameObject go = (GameObject)Instantiate(currentObject, pos, Quaternion.Euler(rotation));
                 go.transform.parent = gameObject.transform;
                 allBoids[i] = go;
-                //allBoids[i].transform.localScale = new Vector3(5F,5F,5F);
-                //allBoids[i].transform.parent = gameObject.transform;
             }
         }
     }

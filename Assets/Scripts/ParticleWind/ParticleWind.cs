@@ -19,9 +19,10 @@ public class ParticleWind : MonoBehaviour {
     private float velocityScalar = 100;
 
     private float currentRange = 0;
-    private GameObject parent;
+    private bool isRunning = true;
     ParticleWindManager particleWindManager;
     ParticleSystem ps;
+    ParticleSystem.MainModule mainModule;
     AudioManager audioManager;
 
 
@@ -33,21 +34,13 @@ public class ParticleWind : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+        // Scale the prefab
+        gameObject.transform.localScale = new Vector3(1F, 1F, 1F);
 
         ps = gameObject.GetComponentInChildren<ParticleSystem>();
+        mainModule = ps.main;
         audioManager = GameObject.FindObjectOfType<AudioManager>();
         particleWindManager = GameObject.FindObjectOfType<ParticleWindManager>();
-
-        // scale
-        //float sceneScale = particleWindManager.sceneScale;
-        //float gameObjectScale = gameObject.transform.localScale.x;
-        //Debug.Log(sceneScale);
-        //Debug.Log(gameObjectScale);
-
-        //gameObject.transform.localScale = new Vector3(sceneScale * gameObjectScale, sceneScale * gameObjectScale, sceneScale * gameObjectScale);
-        //Debug.Log(gameObject.transform.localScale);
-        //Debug.Log(sceneScale * gameObjectScale);
 
         // Add some randomness
         emitScalar = Random.Range(emitScalar - 250, emitScalar + 250);
@@ -55,34 +48,39 @@ public class ParticleWind : MonoBehaviour {
         speedScalar = Random.Range(speedScalar - 250, speedScalar + 250);
         shapeScalar = Random.Range(shapeScalar - 250, shapeScalar + 250);
 
-        //float psScale = (parent == null) ? 1F : parent.transform.localScale.x;
-        //Vector3 psScaleVector = new Vector3(gameObject.transform.localScale.x * psScale, gameObject.transform.localScale.y * psScale, gameObject.transform.localScale.z * psScale);
-        //ps.transform.localScale = psScaleVector;
+        // Particle scale (2 tier)
+        float sceneScale = particleWindManager.sceneScale;
+        float gameObjectScale = gameObject.transform.localScale.x;
+        ps.transform.localScale = new Vector3(sceneScale * gameObjectScale, sceneScale * gameObjectScale, sceneScale * gameObjectScale);
     }
-	
-	// Update is called once per frame
-	void Update () {
-        if (audioManager != null)
-            currentRange = audioManager.currentRange;
 
-        // Emission Rate
-        var emission = ps.emission;
-        var rate = emission.rate;
-        rate.constantMax = currentRange * emitScalar;
-        emission.rate = rate;
-
-        // Speed & Size
-        ps.startSize = currentRange * sizeScalar;
-        ps.startSpeed = currentRange * speedScalar;
-
-        if (useVelocity)
+    // Update is called once per frame
+    void Update () {
+        isRunning = particleWindManager.isRunning;
+        if (isRunning)
         {
-            ParticleSystem.VelocityOverLifetimeModule votm = ps.velocityOverLifetime;
-            ParticleSystem.MinMaxCurve velMax = new ParticleSystem.MinMaxCurve(currentRange * velocityScalar);
-            votm.x = velMax;
-        }
+            if (audioManager != null)
+                currentRange = audioManager.currentRange;
 
-        var shape = ps.shape;
-        shape.angle = currentRange * shapeScalar;
+            // Emission Rate
+            var emission = ps.emission;
+            var rate = emission.rate;
+            rate.constantMax = currentRange * emitScalar;
+            emission.rate = rate;
+
+            // Speed & Size
+            mainModule.startSize = currentRange * sizeScalar;
+            mainModule.startSpeed = currentRange * speedScalar;
+
+            if (useVelocity)
+            {
+                ParticleSystem.VelocityOverLifetimeModule votm = ps.velocityOverLifetime;
+                ParticleSystem.MinMaxCurve velMax = new ParticleSystem.MinMaxCurve(currentRange * velocityScalar);
+                votm.x = velMax;
+            }
+
+            var shape = ps.shape;
+            shape.angle = currentRange * shapeScalar;
+        }
     }
 }
