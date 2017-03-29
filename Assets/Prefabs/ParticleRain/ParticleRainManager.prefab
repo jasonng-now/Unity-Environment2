@@ -119,6 +119,7 @@ MonoBehaviour:
   speedScalar: 500
   useVelocity: 0
   velocityScalar: 100
+  timescalar: 15
   maxSpeed: 0
 --- !u!198 &198000013054455060
 ParticleSystem:
@@ -170,12 +171,12 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -824259603
+  randomSeed: -2024949543
   InitialModule:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 5
+      scalar: 2.75
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1924,7 +1925,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -126219224
+  randomSeed: 1148537247
   InitialModule:
     serializedVersion: 2
     enabled: 1
