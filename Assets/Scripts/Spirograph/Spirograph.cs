@@ -6,7 +6,6 @@ public class Spirograph : MonoBehaviour
 
     // R=100, r=14, d=30, a=1
 
-    public GameObject preFab;
     private float R = 100;
     private float r = 80;
     private float d = 15;
@@ -28,10 +27,13 @@ public class Spirograph : MonoBehaviour
     private float aMax = 10F;		
 
     SpirographParam parameters;
+    ParticleSystem ps;
 
     // Use this for initialization
     void Start()
     {
+        ps = gameObject.GetComponentInChildren<ParticleSystem>();
+
         // Get parameters from parent object
         parameters = this.GetComponentInParent<SpirographParam>();
 
@@ -75,7 +77,7 @@ public class Spirograph : MonoBehaviour
         z1 += gameObject.transform.position.z;
 
         Vector3 pos = new Vector3(x1, y1, z1);
-        preFab.transform.position = pos;
+        ps.transform.position = pos;
 
         t += speed;
     }
