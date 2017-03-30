@@ -22,7 +22,6 @@ public class ParticleWind : MonoBehaviour {
     private bool isRunning = true;
     ParticleWindManager particleWindManager;
     ParticleSystem ps;
-    ParticleSystem.MainModule mainModule;
     AudioManager audioManager;
 
 
@@ -38,7 +37,6 @@ public class ParticleWind : MonoBehaviour {
         gameObject.transform.localScale = new Vector3(1F, 1F, 1F);
 
         ps = gameObject.GetComponentInChildren<ParticleSystem>();
-        mainModule = ps.main;
         audioManager = GameObject.FindObjectOfType<AudioManager>();
         particleWindManager = GameObject.FindObjectOfType<ParticleWindManager>();
 
@@ -69,8 +67,8 @@ public class ParticleWind : MonoBehaviour {
             emission.rate = rate;
 
             // Speed & Size
-            mainModule.startSize = currentRange * sizeScalar;
-            mainModule.startSpeed = currentRange * speedScalar;
+            ps.startSize = currentRange * sizeScalar;
+            ps.startSpeed = currentRange * speedScalar;
 
             if (useVelocity)
             {
