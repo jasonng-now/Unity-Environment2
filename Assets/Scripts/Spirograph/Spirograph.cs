@@ -11,9 +11,6 @@ public class Spirograph : MonoBehaviour
     private float d = 15;
     private float a = 0;
 
-    private float speed = 0.005F;
-    private float scale = 3F;
-
     private float t = 0;
     private float x1 = 0;
     private float y1 = 0;
@@ -24,9 +21,17 @@ public class Spirograph : MonoBehaviour
     private float dMin = 15F;
     private float dMax = 45F;
     private float aMin = 5F;
-    private float aMax = 10F;		
+    private float aMax = 10F;
 
-    SpirographParam parameters;
+    // Parameters
+    private bool isRunning;
+    private float currentRange;
+    private float emitScalar;
+    private float sizeScalar;
+    private float speed;
+    private float scale;
+
+    SpirographManager parameters;
     ParticleSystem ps;
 
     // Use this for initialization
@@ -35,7 +40,7 @@ public class Spirograph : MonoBehaviour
         ps = gameObject.GetComponentInChildren<ParticleSystem>();
 
         // Get parameters from parent object
-        parameters = this.GetComponentInParent<SpirographParam>();
+        parameters = this.GetComponentInParent<SpirographManager>();
 
         speed = parameters.speed;
         scale = parameters.scale;
@@ -62,24 +67,40 @@ public class Spirograph : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-		R = parameters.R;
-        speed = parameters.speed;
-        scale = parameters.scale;		
+    {		
+        isRunning = parameters.isRunning;
+        if (isRunning)
+        {
+            R = parameters.R;
+            currentRange = parameters.currentRange;
+            emitScalar = parameters.emitScalar;
+            sizeScalar = parameters.sizeScalar;
+            speed = parameters.speed;
+            scale = parameters.scale;
 
-        x1 = X(t, R, r, d, a);
-        y1 = Y(t, R, r, d, a);
-        z1 = Z(t, R, r, d, a);
+            x1 = X(t, R, r, d, a);
+            y1 = Y(t, R, r, d, a);
+            z1 = Z(t, R, r, d, a);
 
-        // Translate to game object
-        x1 += gameObject.transform.position.x;
-        y1 += gameObject.transform.position.y;
-        z1 += gameObject.transform.position.z;
+            // Translate to game object
+            x1 += gameObject.transform.position.x;
+            y1 += gameObject.transform.position.y;
+            z1 += gameObject.transform.position.z;
 
-        Vector3 pos = new Vector3(x1, y1, z1);
-        ps.transform.position = pos;
+            Vector3 pos = new Vector3(x1, y1, z1);
+            ps.transform.position = pos;
 
-        t += speed;
+            // Emission Rate
+            var emission = ps.emission;
+            var rate = emission.rate;
+            rate.constantMax = currentRange * emitScalar;
+            emission.rate = rate;
+
+            // Speed & Size
+            ps.startSize = currentRange * sizeScalar;
+
+            t += speed;
+        }
     }
 
     // The parametric function X(t).

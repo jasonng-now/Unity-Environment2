@@ -68,7 +68,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4000010662380208}
-  - component: {fileID: 114000011272690920}
+  - component: {fileID: 114867547262911540}
   m_Layer: 0
   m_Name: Spirograph
   m_TagString: Untagged
@@ -267,20 +267,6 @@ TrailRenderer:
     textureMode: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
---- !u!114 &114000011272690920
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011415266940}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b36775572585d340b056783ef33c9f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.01
-  scale: 3
-  R: 25
 --- !u!114 &114000012449956910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -303,6 +289,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc92c5feadb20f54aab387c6e5988b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114867547262911540
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011415266940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdfb82205ec7f724c92af73b24fd734d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.01
+  scale: 5
+  R: 25
+  speedScalar: 0.6
+  emitScalar: 5000
+  sizeScalar: 100
+  isRunning: 1
+  currentRange: 0
 --- !u!198 &198000010466180712
 ParticleSystem:
   m_ObjectHideFlags: 1
