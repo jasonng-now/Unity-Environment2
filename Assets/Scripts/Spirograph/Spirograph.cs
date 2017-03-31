@@ -15,13 +15,6 @@ public class Spirograph : MonoBehaviour
     private float x1 = 0;
     private float y1 = 0;
     private float z1 = 0;
-	
-    private float rMin = 5F;
-    private float rMax = 15F;
-    private float dMin = 15F;
-    private float dMax = 45F;
-    private float aMin = 5F;
-    private float aMax = 10F;
 
     // Parameters
     private bool isRunning;
@@ -40,16 +33,10 @@ public class Spirograph : MonoBehaviour
         ps = gameObject.GetComponentInChildren<ParticleSystem>();
         parameters = this.GetComponentInParent<SpirographManager>();
 
-		rMin = R * 0.7F;
-		rMax = R * 0.9F;
-		dMin = R * 0.1F;
-		dMax = R * 0.3F;
-		aMin = 1F;
-		aMax = 3F;
-
-        r = Random.Range(r-1, r+1);
-        d = Random.Range(d-1, d+1);
-        a = Random.Range(a-1, a+1);
+        float range = 5;
+        r = Random.Range(r - range, r + range);
+        d = Random.Range(d - range, d + range);
+        a = Random.Range(a - range, a + range);
 
         scale = parameters.scale;
         R = R / scale;
