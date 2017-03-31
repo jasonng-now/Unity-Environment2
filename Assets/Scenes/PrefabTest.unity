@@ -439,63 +439,40 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4000010662380208, guid: 371d38eb05056af4d8b6a4ae95d7afd2, type: 2}
+    - target: {fileID: 4510448323081278, guid: 22d728332a5aefb40a00a56ef4dffed2, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010662380208, guid: 371d38eb05056af4d8b6a4ae95d7afd2, type: 2}
+    - target: {fileID: 4510448323081278, guid: 22d728332a5aefb40a00a56ef4dffed2, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010662380208, guid: 371d38eb05056af4d8b6a4ae95d7afd2, type: 2}
+    - target: {fileID: 4510448323081278, guid: 22d728332a5aefb40a00a56ef4dffed2, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010662380208, guid: 371d38eb05056af4d8b6a4ae95d7afd2, type: 2}
+    - target: {fileID: 4510448323081278, guid: 22d728332a5aefb40a00a56ef4dffed2, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010662380208, guid: 371d38eb05056af4d8b6a4ae95d7afd2, type: 2}
+    - target: {fileID: 4510448323081278, guid: 22d728332a5aefb40a00a56ef4dffed2, type: 2}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010662380208, guid: 371d38eb05056af4d8b6a4ae95d7afd2, type: 2}
+    - target: {fileID: 4510448323081278, guid: 22d728332a5aefb40a00a56ef4dffed2, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010662380208, guid: 371d38eb05056af4d8b6a4ae95d7afd2, type: 2}
+    - target: {fileID: 4510448323081278, guid: 22d728332a5aefb40a00a56ef4dffed2, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010662380208, guid: 371d38eb05056af4d8b6a4ae95d7afd2, type: 2}
+    - target: {fileID: 4510448323081278, guid: 22d728332a5aefb40a00a56ef4dffed2, type: 2}
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 1000011415266940, guid: 371d38eb05056af4d8b6a4ae95d7afd2, type: 2}
-      propertyPath: m_Name
-      value: SpirographManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 114867547262911540, guid: 371d38eb05056af4d8b6a4ae95d7afd2,
-        type: 2}
-      propertyPath: scale
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 96000014253775130, guid: 371d38eb05056af4d8b6a4ae95d7afd2,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010060104220, guid: 371d38eb05056af4d8b6a4ae95d7afd2, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114867547262911540, guid: 371d38eb05056af4d8b6a4ae95d7afd2,
-        type: 2}
-      propertyPath: speedScalar
-      value: 0.15
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 371d38eb05056af4d8b6a4ae95d7afd2, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 22d728332a5aefb40a00a56ef4dffed2, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1966954553
 Prefab:
