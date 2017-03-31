@@ -6,9 +6,7 @@ public class SpirographManager : MonoBehaviour
     [SerializeField]
     public float speed = 0;
     [SerializeField]
-    public float scale = 5F;
-    [SerializeField]
-    public float R = 10F;
+    public float scale = 3F;
     [SerializeField]
     public float speedScalar = 50;
     [SerializeField]
@@ -33,6 +31,7 @@ public class SpirographManager : MonoBehaviour
         {
             currentRange = audioManager.currentRange;
             speed = currentRange * speedScalar;
+            //speed = 0.005F;
         }
     }
 }

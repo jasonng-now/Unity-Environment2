@@ -4,12 +4,12 @@ using System.Collections;
 public class Spirograph : MonoBehaviour
 {
 
-    // R=100, r=14, d=30, a=1
+    // R=100, r=7, d=30, a=5, scale=3
 
-    private float R = 100;
-    private float r = 80;
-    private float d = 15;
-    private float a = 0;
+    private float R = 100F;
+    private float r = 7F;
+    private float d = 30F;
+    private float a = 5F;
 
     private float t = 0;
     private float x1 = 0;
@@ -38,28 +38,20 @@ public class Spirograph : MonoBehaviour
     void Start()
     {
         ps = gameObject.GetComponentInChildren<ParticleSystem>();
-
-        // Get parameters from parent object
         parameters = this.GetComponentInParent<SpirographManager>();
-
-        speed = parameters.speed;
-        scale = parameters.scale;
-		R = parameters.R;
 
 		rMin = R * 0.7F;
 		rMax = R * 0.9F;
 		dMin = R * 0.1F;
 		dMax = R * 0.3F;
 		aMin = 1F;
-		aMax = 3F;				
-	
-        r = Random.Range(rMin, rMax);
-        d = Random.Range(dMin, dMax);
-        a = Random.Range(aMin, aMax);
-		//r = R * 0.8F;
-		//d = R * 0.15F;
-		//a = 1F;
+		aMax = 3F;
 
+        r = Random.Range(r-1, r+1);
+        d = Random.Range(d-1, d+1);
+        a = Random.Range(a-1, a+1);
+
+        scale = parameters.scale;
         R = R / scale;
         r = r / scale;
         d = d / scale;
@@ -67,11 +59,15 @@ public class Spirograph : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {		
+    {
+        //R = 100 / 3F;
+        //r = 7 / 3F;
+        //d = 30 / 3F;
+        //a = 5F;
         isRunning = parameters.isRunning;
         if (isRunning)
         {
-            R = parameters.R;
+            //R = parameters.R;
             currentRange = parameters.currentRange;
             emitScalar = parameters.emitScalar;
             sizeScalar = parameters.sizeScalar;

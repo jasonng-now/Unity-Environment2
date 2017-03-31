@@ -379,7 +379,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1423244865}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.09, z: -30}
+  m_LocalPosition: {x: 0, y: 1.09, z: -50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 810620705}
@@ -475,15 +475,24 @@ Prefab:
       propertyPath: m_Name
       value: SpirographManager
       objectReference: {fileID: 0}
+    - target: {fileID: 114867547262911540, guid: 371d38eb05056af4d8b6a4ae95d7afd2,
+        type: 2}
+      propertyPath: scale
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 96000014253775130, guid: 371d38eb05056af4d8b6a4ae95d7afd2,
         type: 2}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010060104220, guid: 371d38eb05056af4d8b6a4ae95d7afd2, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 114867547262911540, guid: 371d38eb05056af4d8b6a4ae95d7afd2,
         type: 2}
-      propertyPath: m_Enabled
-      value: 1
+      propertyPath: speedScalar
+      value: 0.15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 371d38eb05056af4d8b6a4ae95d7afd2, type: 2}
