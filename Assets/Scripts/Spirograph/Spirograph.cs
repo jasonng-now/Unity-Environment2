@@ -42,6 +42,11 @@ public class Spirograph : MonoBehaviour
         R = R / scale;
         r = r / scale;
         d = d / scale;
+
+        // Particle scale (2 tier)
+        float sceneScale = parameters.sceneScale;
+        float gameObjectScale = gameObject.transform.localScale.x;
+        ps.transform.localScale = new Vector3(sceneScale * gameObjectScale, sceneScale * gameObjectScale, sceneScale * gameObjectScale);
     }
 
     // Update is called once per frame

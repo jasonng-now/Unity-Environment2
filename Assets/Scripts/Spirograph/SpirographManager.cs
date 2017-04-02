@@ -17,11 +17,14 @@ public class SpirographManager : MonoBehaviour
     // Private
     public bool isRunning = true;
     public float currentRange = 0;
+    public float sceneScale;
     AudioManager audioManager;
 
     // Use this for initialization
     void Start()
     {
+        // Particle scale
+        sceneScale = (gameObject.transform.parent == null) ? 1F : gameObject.transform.parent.transform.localScale.x;
         audioManager = GameObject.FindObjectOfType<AudioManager>();
     }
 
@@ -31,7 +34,6 @@ public class SpirographManager : MonoBehaviour
         {
             currentRange = audioManager.currentRange;
             speed = currentRange * speedScalar;
-            //speed = 0.005F;
         }
     }
 }
