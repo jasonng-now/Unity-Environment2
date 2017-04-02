@@ -31,6 +31,7 @@ public class ParticleRain : MonoBehaviour
     // Private
     private bool isRunning = true;
     private float currentRange = 0;
+    PreFabManager prefabManager;
     ParticleSystem ps;
     ParticleSystem subEmit;
     AudioManager audioManager;
@@ -40,6 +41,7 @@ public class ParticleRain : MonoBehaviour
 
     // Use this for initialization
     void Start () {
+        prefabManager = gameObject.GetComponent<PreFabManager>();
         ps = gameObject.GetComponentInChildren<ParticleSystem>();
         subEmit = ps.subEmitters.birth0;
         audioManager = GameObject.FindObjectOfType<AudioManager>();
@@ -49,20 +51,21 @@ public class ParticleRain : MonoBehaviour
         float gameObjectScale = gameObject.transform.localScale.x;
         ps.transform.localScale = new Vector3(sceneScale * gameObjectScale, sceneScale * gameObjectScale, sceneScale * gameObjectScale);
         subEmit.transform.localScale = new Vector3(sceneScale * gameObjectScale, sceneScale * gameObjectScale, sceneScale * gameObjectScale);
+
+        // Set particle system emission rate;
+        prefabManager.SetEmissionRate(ps, 0);
     }
 
     // Update is called once per frame
     void Update () {
+        isRunning = prefabManager.isRunning;
         if (isRunning)
         {
             if (audioManager != null)
                 currentRange = audioManager.currentRange;
 
-            // Emission Rate
-            var emission = ps.emission;
-            var rate = emission.rate;
-            rate.constantMax = currentRange * emitScalar;
-            emission.rate = rate;
+            // Set particle system emission rate;
+            prefabManager.SetEmissionRate(ps, currentRange * emitScalar);
 
             // Speed & Size
             if (currentRange * speedScalar > maxSpeed)
@@ -77,6 +80,11 @@ public class ParticleRain : MonoBehaviour
                 ParticleSystem.MinMaxCurve velMax = new ParticleSystem.MinMaxCurve(currentRange * velocityScalar);
                 votm.x = velMax;
             }
+        }
+        else
+        {
+            // Set particle system emission rate;
+            prefabManager.SetEmissionRate(ps, 0);
         }
     }
 }

@@ -18,13 +18,17 @@ public class ParticleWindManager: MonoBehaviour
     private int itemCount;
 
     // Private
+
     private GameObject[] allBoids;
     public float sceneScale = 1F;
     public bool isRunning = true;
+    PreFabManager prefabManager;
 
     // Use this for initialization
     void Start()
     {
+        prefabManager = gameObject.GetComponent<PreFabManager>();
+
         // Particle scale
         sceneScale = (gameObject.transform.parent == null) ? 1F : gameObject.transform.parent.transform.localScale.x;
 
@@ -55,5 +59,6 @@ public class ParticleWindManager: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isRunning = prefabManager.isRunning;
     }
 }

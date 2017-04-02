@@ -16,9 +16,9 @@ public class ParticleField : MonoBehaviour
     private float timescalar = 15F;
 
     // Private
-    private bool isRunning = true;
+    private bool isRunning;
     private float currentRange = 0;
-    private GameObject parent;
+    PreFabManager prefabManager;
     ParticleSystem ps;
     AudioManager audioManager;
 
@@ -29,6 +29,7 @@ public class ParticleField : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        prefabManager = gameObject.GetComponent<PreFabManager>();
         ps = gameObject.GetComponentInChildren<ParticleSystem>();
         audioManager = GameObject.FindObjectOfType<AudioManager>();
 
@@ -37,26 +38,21 @@ public class ParticleField : MonoBehaviour
         float gameObjectScale = gameObject.transform.localScale.x;
         ps.transform.localScale = new Vector3(sceneScale * gameObjectScale, sceneScale * gameObjectScale, sceneScale * gameObjectScale);
 
-        // Emission Rate
-        var emission = ps.emission;
-        var rate = emission.rate;
-        rate.constantMax = 0;
-        emission.rate = rate;
+        // Set particle system emission rate;
+        prefabManager.SetEmissionRate(ps, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
+        isRunning = prefabManager.isRunning;
         if (isRunning)
         {
             if (audioManager != null)
                 currentRange = audioManager.currentRange;
-
-            // Emission Rate
-            var emission = ps.emission;
-            var rate = emission.rate;
-            rate.constantMax = currentRange * emitScalar;
-            emission.rate = rate;
+            
+            // Set particle system emission rate;
+            prefabManager.SetEmissionRate(ps, currentRange * emitScalar);
 
             // Speed & Size
             if (currentRange * speedScalar > maxSpeed)
@@ -69,6 +65,11 @@ public class ParticleField : MonoBehaviour
             ps.startSize = currentRange * sizeScalar;
             ps.startSpeed = currentRange * speedScalar;
             ps.startLifetime = Mathf.Clamp(currentRange * lifetimeScalar, 0, 1F);
+        }
+        else
+        {
+            // Set particle system emission rate;
+            prefabManager.SetEmissionRate(ps, 0);
         }
     }
 }

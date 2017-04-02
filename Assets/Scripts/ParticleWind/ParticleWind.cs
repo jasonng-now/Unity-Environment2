@@ -20,16 +20,10 @@ public class ParticleWind : MonoBehaviour {
 
     private float currentRange = 0;
     private bool isRunning = true;
+    PreFabManager prefabManager;
     ParticleWindManager particleWindManager;
     ParticleSystem ps;
     AudioManager audioManager;
-
-
-    //ParticleSystem ps;
-    //AudioSource audioManagerSource = null;
-    //private AudioSource _mySource;		// The audiosource
-    //private bool localAudioSource = false;
-    //private float currentRange = 0;
 
     // Use this for initialization
     void Start () {
@@ -39,6 +33,7 @@ public class ParticleWind : MonoBehaviour {
         ps = gameObject.GetComponentInChildren<ParticleSystem>();
         audioManager = GameObject.FindObjectOfType<AudioManager>();
         particleWindManager = GameObject.FindObjectOfType<ParticleWindManager>();
+        prefabManager = particleWindManager.GetComponent<PreFabManager>();
 
         // Add some randomness
         emitScalar = Random.Range(emitScalar - 250, emitScalar + 250);
@@ -50,6 +45,9 @@ public class ParticleWind : MonoBehaviour {
         float sceneScale = particleWindManager.sceneScale;
         float gameObjectScale = gameObject.transform.localScale.x;
         ps.transform.localScale = new Vector3(sceneScale * gameObjectScale, sceneScale * gameObjectScale, sceneScale * gameObjectScale);
+
+        // Set particle system emission rate;
+        prefabManager.SetEmissionRate(ps, 0);
     }
 
     // Update is called once per frame
@@ -60,11 +58,8 @@ public class ParticleWind : MonoBehaviour {
             if (audioManager != null)
                 currentRange = audioManager.currentRange;
 
-            // Emission Rate
-            var emission = ps.emission;
-            var rate = emission.rate;
-            rate.constantMax = currentRange * emitScalar;
-            emission.rate = rate;
+            // Set particle system emission rate;
+            prefabManager.SetEmissionRate(ps, currentRange * emitScalar);
 
             // Speed & Size
             ps.startSize = currentRange * sizeScalar;
@@ -79,6 +74,11 @@ public class ParticleWind : MonoBehaviour {
 
             var shape = ps.shape;
             shape.angle = currentRange * shapeScalar;
+        }
+        else
+        {
+            // Set particle system emission rate;
+            prefabManager.SetEmissionRate(ps, 0);
         }
     }
 }

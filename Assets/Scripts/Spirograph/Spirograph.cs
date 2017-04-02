@@ -24,6 +24,7 @@ public class Spirograph : MonoBehaviour
     private float speed;
     private float scale;
 
+    PreFabManager prefabManager;
     SpirographManager parameters;
     ParticleSystem ps;
 
@@ -32,6 +33,7 @@ public class Spirograph : MonoBehaviour
     {
         ps = gameObject.GetComponentInChildren<ParticleSystem>();
         parameters = this.GetComponentInParent<SpirographManager>();
+        prefabManager = parameters.GetComponent<PreFabManager>();
 
         float range = 5;
         r = Random.Range(r - range, r + range);
@@ -47,6 +49,9 @@ public class Spirograph : MonoBehaviour
         float sceneScale = parameters.sceneScale;
         float gameObjectScale = gameObject.transform.localScale.x;
         ps.transform.localScale = new Vector3(sceneScale * gameObjectScale, sceneScale * gameObjectScale, sceneScale * gameObjectScale);
+
+        // Set particle system emission rate;
+        prefabManager.SetEmissionRate(ps, 0);
     }
 
     // Update is called once per frame
@@ -78,16 +83,19 @@ public class Spirograph : MonoBehaviour
             Vector3 pos = new Vector3(x1, y1, z1);
             ps.transform.position = pos;
 
-            // Emission Rate
-            var emission = ps.emission;
-            var rate = emission.rate;
-            rate.constantMax = currentRange * emitScalar;
-            emission.rate = rate;
+
+            // Set particle system emission rate;
+            prefabManager.SetEmissionRate(ps, currentRange * emitScalar);
 
             // Speed & Size
             ps.startSize = currentRange * sizeScalar;
 
             t += speed;
+        }
+        else
+        {
+            // Set particle system emission rate;
+            prefabManager.SetEmissionRate(ps, 0);
         }
     }
 

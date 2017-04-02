@@ -18,6 +18,7 @@ public class SpirographManager : MonoBehaviour
     public bool isRunning = true;
     public float currentRange = 0;
     public float sceneScale;
+    PreFabManager prefabManager;
     AudioManager audioManager;
 
     // Use this for initialization
@@ -25,11 +26,13 @@ public class SpirographManager : MonoBehaviour
     {
         // Particle scale
         sceneScale = (gameObject.transform.parent == null) ? 1F : gameObject.transform.parent.transform.localScale.x;
+        prefabManager = gameObject.GetComponent<PreFabManager>();
         audioManager = GameObject.FindObjectOfType<AudioManager>();
     }
 
     void Update()
     {
+        isRunning = prefabManager.isRunning;
         if (audioManager != null)
         {
             currentRange = audioManager.currentRange;
