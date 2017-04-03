@@ -114,9 +114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca607d505550834eb4a37578ea5359e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emitScalar: 5000
-  sizeScalar: 50
-  lifetimeScalar: 25
+  emitScalar: 50000
+  sizeScalar: 100
+  lifetimeScalar: 250
   speedScalar: 50
   timescalar: 15
   maxSpeed: 0
@@ -607,8 +607,8 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 3
     enabled: 1
-    type: 5
-    radius: 1
+    type: 1
+    radius: 25
     angle: 25
     length: 5
     boxX: 25

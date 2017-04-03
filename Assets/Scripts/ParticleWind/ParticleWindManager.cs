@@ -44,7 +44,7 @@ public class ParticleWindManager: MonoBehaviour
                 GameObject currentObject = preFab;
                 
                 // Position
-                Vector3 pos = new Vector3(ordered[i].x * sceneScale, Random.Range(gameObject.transform.position.y - 5, gameObject.transform.position.y + 5), ordered[i].y * sceneScale);
+                Vector3 pos = new Vector3(ordered[i].x * sceneScale, gameObject.transform.position.y, ordered[i].y * sceneScale);
 
                 // Rotation
                 Vector3 rotation = new Vector3(currentObject.transform.localRotation.x, Random.Range(0, 360), currentObject.transform.localRotation.z);
