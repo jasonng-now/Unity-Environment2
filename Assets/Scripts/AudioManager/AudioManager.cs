@@ -40,6 +40,11 @@ public class AudioManager : MonoBehaviour
         //    }
         //}
 
+        //if (timeCounter > audioClipLength)
+        //{
+        //    timeCounter = 0.0F;
+        //}
+
         //// Fade in current clip
         //if (timeCounter < 1.5)
         //{
@@ -50,7 +55,7 @@ public class AudioManager : MonoBehaviour
         //}
 
         //// Fade out current clip
-        //if (timeCounter > randomTime - 1.5)
+        //if (timeCounter > audioClipLength - 1.5)
         //{
         //    if (audio.volume > 0.0)
         //    {

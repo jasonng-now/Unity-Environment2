@@ -50,11 +50,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b49eb222133c08743983d5502eb4ccec, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c3b7dcc1424d39a4b8a1c4d1fc489a4c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClipArray:
   - {fileID: 8300000, guid: 86c12ca5e8521214a84951e65cb81dcc, type: 3}
-  - {fileID: 8300000, guid: 014627993eae83844b7781a5044ec33f, type: 3}
+  - {fileID: 8300000, guid: 7f75e2dd0f834d548b2ff20c56fe0e2e, type: 3}
   - {fileID: 8300000, guid: c3b7dcc1424d39a4b8a1c4d1fc489a4c, type: 3}
   - {fileID: 8300000, guid: 3809841c5012f3c44be2894e9c299ce0, type: 3}
   preFabArray:
@@ -143,5 +143,5 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   audioClipLength: 30
-  useAudioClips: 1
+  useAudioClips: 0
   currentRange: 0
