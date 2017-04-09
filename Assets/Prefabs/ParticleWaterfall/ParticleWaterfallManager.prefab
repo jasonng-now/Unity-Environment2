@@ -145,12 +145,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cd4e49bd817afe49993ed0fb7e6a76c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preFab: {fileID: 0}
+  preFab: {fileID: 1657097269319528, guid: dfbd454b26d1bb24eab965438e7a865a, type: 2}
   c: 2.5
   itemCount: 10
   emitScalar: 10000
   sizeScalar: 10
-  gravityScalar: 15
+  gravityScalar: 3.5
   sceneScale: 1
   isRunning: 0
 --- !u!114 &114500011528582342
@@ -220,7 +220,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1954788739
+  randomSeed: -1952661111
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -397,7 +397,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 0
-      minMaxState: 3
+      minMaxState: 0
     startSizeY:
       scalar: 1
       maxCurve:
@@ -424,7 +424,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 0
-      minMaxState: 3
+      minMaxState: 0
     startSizeZ:
       scalar: 1
       maxCurve:
@@ -451,7 +451,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 0
-      minMaxState: 3
+      minMaxState: 0
     startRotationX:
       scalar: 6.283185
       maxCurve:
@@ -2902,7 +2902,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 0
-      minMaxState: 3
+      minMaxState: 0
     startSizeY:
       scalar: 1
       maxCurve:
@@ -2929,7 +2929,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 0
-      minMaxState: 3
+      minMaxState: 0
     startSizeZ:
       scalar: 1
       maxCurve:
@@ -2956,7 +2956,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 0
-      minMaxState: 3
+      minMaxState: 0
     startRotationX:
       scalar: 6.283185
       maxCurve:
@@ -5230,7 +5230,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1994147767
+  randomSeed: -1441499456
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5407,7 +5407,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 0
-      minMaxState: 3
+      minMaxState: 0
     startSizeY:
       scalar: 1
       maxCurve:
@@ -5434,7 +5434,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 0
-      minMaxState: 3
+      minMaxState: 0
     startSizeZ:
       scalar: 1
       maxCurve:
@@ -5461,7 +5461,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 0
-      minMaxState: 3
+      minMaxState: 0
     startRotationX:
       scalar: 6.283185
       maxCurve:
@@ -5590,7 +5590,7 @@ ParticleSystem:
     serializedVersion: 3
     enabled: 1
     type: 11
-    radius: 15
+    radius: 18
     angle: 25
     length: 5
     boxX: 1
@@ -7744,7 +7744,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 80a18aabbe35fe24097bacb4df7f5a48, type: 2}
+  - {fileID: 2100000, guid: edc7d396758104a4a9e8092d23178767, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -7794,7 +7794,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 80a18aabbe35fe24097bacb4df7f5a48, type: 2}
+  - {fileID: 2100000, guid: ce87d6ddb342243468b670f5b31616a2, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0

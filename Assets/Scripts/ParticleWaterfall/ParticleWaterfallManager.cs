@@ -32,6 +32,11 @@ public class ParticleWaterfallManager : MonoBehaviour {
     void Start()
     {
         prefabManager = gameObject.GetComponent<PreFabManager>();
+
+        // Particle scale
+        sceneScale = (gameObject.transform.parent == null) ? 1F : gameObject.transform.parent.transform.localScale.x;
+        float gameObjectScale = gameObject.transform.localScale.x;
+
         audioManager = GameObject.FindObjectOfType<AudioManager>();
         psArray = gameObject.GetComponentsInChildren<ParticleSystem>();
 
@@ -48,8 +53,8 @@ public class ParticleWaterfallManager : MonoBehaviour {
 
                 // Position
                 // Random.Range(gameObject.transform.position.y+2, gameObject.transform.position.y + 5)
-                float ypos = gameObject.transform.position.y + 3.5F;
-                Vector3 pos = new Vector3(ordered[i].x * sceneScale, ypos, ordered[i].y * sceneScale);
+                float ypos = (gameObject.transform.position.y * sceneScale * gameObjectScale) + (3.5F * sceneScale* gameObjectScale);
+                Vector3 pos = new Vector3(ordered[i].x * sceneScale * gameObjectScale, ypos, ordered[i].y * sceneScale * gameObjectScale);
 
                 // Rotation
                 Vector3 rotation = new Vector3(90, 0, 0);
@@ -58,6 +63,23 @@ public class ParticleWaterfallManager : MonoBehaviour {
                 go.transform.parent = gameObject.transform;
                 allBoids[i] = go;
             }
+        }
+
+        //Large scale
+        foreach (ParticleSystem ps in psArray)
+        {
+            // Position
+            Vector3 pos = new Vector3(ps.transform.position.x * sceneScale * gameObjectScale,
+                                      ps.transform.position.y * sceneScale * gameObjectScale,
+                                      ps.transform.position.z * sceneScale * gameObjectScale);
+            ps.transform.position = pos;
+
+            // Scale
+            ps.transform.localScale = new Vector3(sceneScale * gameObjectScale, sceneScale * gameObjectScale, sceneScale * gameObjectScale);
+
+            // Shape (Radius)
+            var shape = ps.shape;
+            shape.radius = shape.radius * sceneScale * gameObjectScale;
         }
     }
 

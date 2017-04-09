@@ -84,7 +84,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emitScalar: 4000
   sizeScalar: 2.5
-  speedScalar: 75
+  speedScalar: 85
   shapeScalar: 500
 --- !u!198 &198028418363372014
 ParticleSystem:
@@ -2665,7 +2665,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: edc7d396758104a4a9e8092d23178767, type: 2}
+  - {fileID: 2100000, guid: eabf18a3ae1c2e7499e220507244a415, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0

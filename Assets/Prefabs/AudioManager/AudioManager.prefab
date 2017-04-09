@@ -50,7 +50,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c3b7dcc1424d39a4b8a1c4d1fc489a4c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a3df09f3acf637d42a39425cb1a5751a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -137,7 +137,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7f75e2dd0f834d548b2ff20c56fe0e2e, type: 3}
   - {fileID: 8300000, guid: c3b7dcc1424d39a4b8a1c4d1fc489a4c, type: 3}
   - {fileID: 8300000, guid: 3809841c5012f3c44be2894e9c299ce0, type: 3}
+  - {fileID: 8300000, guid: 81c7d7fa5a614874b8db5da673e288f1, type: 3}
   preFabArray:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -145,3 +147,4 @@ MonoBehaviour:
   audioClipLength: 30
   useAudioClips: 0
   currentRange: 0
+  spectrum: []
