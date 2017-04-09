@@ -4,36 +4,60 @@ using UnityEngine;
 
 public class ParticleWaterfallManager : MonoBehaviour {
 
-    // Public
-    //[SerializeField]
-    //private float emitScalar = 5000F;
-    //[SerializeField]
-    //private float sizeScalar = 50F;
-    //[SerializeField]
-    //private float lifetimeScalar = 500F;
+    // Phyllotaxis variables
+    [SerializeField]
+    private GameObject preFab;
+    [SerializeField]
+    private float c = 3;
+    [SerializeField]
+    private int itemCount;
+
+    [SerializeField]
+    private float emitScalar = 40F;
+    [SerializeField]
+    private float sizeScalar = 50F;
+    [SerializeField]
+    private float gravityScalar = 0.15F;
 
     // Private
-    private bool isRunning;
+    private GameObject[] allBoids;
+    public float sceneScale = 1F;
+    public bool isRunning;
     private float currentRange = 0;
     PreFabManager prefabManager;
     ParticleSystem[] psArray;
     AudioManager audioManager;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         prefabManager = gameObject.GetComponent<PreFabManager>();
-        psArray = gameObject.GetComponentsInChildren<ParticleSystem>();
         audioManager = GameObject.FindObjectOfType<AudioManager>();
+        psArray = gameObject.GetComponentsInChildren<ParticleSystem>();
 
-        // Particle scale (2 tier)
-        float sceneScale = (gameObject.transform.parent == null) ? 1F : gameObject.transform.parent.transform.localScale.x;
-        float gameObjectScale = gameObject.transform.localScale.x;
-        foreach (ParticleSystem ps in psArray)
+        List<Vector2> ordered = new List<Vector2>();
+        Phyllotaxis pt = new Phyllotaxis();
+        ordered = pt.GetOrderedPositions(c, itemCount);
+        allBoids = new GameObject[ordered.Count];
+
+        for (int i = 0; i < ordered.Count; i++)
         {
-            ps.transform.localScale = new Vector3(sceneScale * gameObjectScale, sceneScale * gameObjectScale, sceneScale * gameObjectScale);
+            if (ordered[i] != Vector2.zero)
+            {
+                GameObject currentObject = preFab;
 
-            // Set particle system emission rate;
-            prefabManager.SetEmissionRate(ps, 0);
+                // Position
+                // Random.Range(gameObject.transform.position.y+2, gameObject.transform.position.y + 5)
+                float ypos = gameObject.transform.position.y + 3.5F;
+                Vector3 pos = new Vector3(ordered[i].x * sceneScale, ypos, ordered[i].y * sceneScale);
+
+                // Rotation
+                Vector3 rotation = new Vector3(90, 0, 0);
+
+                GameObject go = (GameObject)Instantiate(currentObject, pos, Quaternion.Euler(rotation));
+                go.transform.parent = gameObject.transform;
+                allBoids[i] = go;
+            }
         }
     }
 
@@ -48,20 +72,9 @@ public class ParticleWaterfallManager : MonoBehaviour {
 
             foreach (ParticleSystem ps in psArray)
             {
-                ParticleWaterfall pw = ps.GetComponent<ParticleWaterfall>();
-
-                // Set particle system emission rate;
-                prefabManager.SetEmissionRate(ps, currentRange * pw.emitScalar);
-                ps.startSize = currentRange * pw.sizeScalar;
-                ps.startLifetime = currentRange * pw.lifetimeScalar;
-            }
-        }
-        else
-        {
-            foreach (ParticleSystem ps in psArray)
-            {
-                // Set particle system emission rate;
-                prefabManager.SetEmissionRate(ps, 0);
+                prefabManager.SetEmissionRate(ps, currentRange * emitScalar);
+                ps.startSize = currentRange * sizeScalar;
+                ps.gravityModifier = currentRange * gravityScalar;
             }
         }
     }

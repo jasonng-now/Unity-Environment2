@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour
     public bool useAudioClips = false;
     private float timeCounter = 0F;
     public float currentRange = 0F;
+    public float[] spectrum;
 
     // Use this for initialization
     void Start()
@@ -63,7 +64,7 @@ public class AudioManager : MonoBehaviour
         //    }
         //}
 
-        float[] spectrum = AudioListener.GetSpectrumData(1024, 0, FFTWindow.Hamming);
+        spectrum = AudioListener.GetSpectrumData(1024, 0, FFTWindow.Hamming);
 
         //c1 = 64Hz
         //c3 = 256Hz

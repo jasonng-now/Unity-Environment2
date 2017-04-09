@@ -25,17 +25,16 @@ public class PhyllotaxisManager : MonoBehaviour {
             Vector3 pos = new Vector3(x, 3, z);
 
             // Rotation
-            Vector3 xaxis = new Vector3(0,-5,0);
+            Vector3 xaxis = new Vector3(1,0,0);
 
-            Vector3 difference = pos - xaxis;
-            float anglec = Vector3.Angle(Vector3.right, difference);
-            //float angleb = Vector3.Angle(pos, xaxis);
-            Debug.Log(anglec);
+            //Vector3 difference = pos - xaxis;
+            //float anglec = Vector3.Angle(Vector3.right, difference);
+            float angleb = Vector3.Angle(pos, xaxis);
             Vector3 raxis = Vector3.Cross(xaxis,pos);
             Vector3 rotation = new Vector3(raxis.x, raxis.y , raxis.z);
 
             allBoids[i] = (GameObject)Instantiate(preFab, pos, Quaternion.identity);
-            allBoids[i].transform.Rotate(rotation, anglec);
+            allBoids[i].transform.Rotate(rotation, angleb);
             allBoids[i].transform.parent = gameObject.transform;
         }
     }
