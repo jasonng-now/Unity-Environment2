@@ -59,6 +59,8 @@ MonoBehaviour:
   itemCount: 0
   sceneScale: 1
   isRunning: 1
+  interval: 0.005
+  distanceScalar: 2.5
 --- !u!114 &114954582645419630
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -18,11 +18,13 @@ public class ParticleWindManager: MonoBehaviour
     private int itemCount;
 
     // Private
-
-    private GameObject[] allBoids;
+    private NewObj[] allBoids;
     public float sceneScale = 1F;
     public bool isRunning = true;
     PreFabManager prefabManager;
+    private float currentRange = 0;
+    public float interval = 0.005F;
+    public float distanceScalar = 0.05F;
 
     // Use this for initialization
     void Start()
@@ -35,12 +37,16 @@ public class ParticleWindManager: MonoBehaviour
         List<Vector2> ordered = new List<Vector2>();
         PoissonDisc pd = new PoissonDisc();
         ordered = pd.GetOrderedPositions(PDWidth, PDHeight, PDRadius, itemCount);
-        allBoids = new GameObject[ordered.Count];
+        allBoids = new NewObj[ordered.Count];
 
         for (int i = 0; i < ordered.Count; i++)
         {
             if (ordered[i] != Vector2.zero)
             {
+                NewObj no = new NewObj();
+                no.x = i * 10;
+                no.z = i * 50;
+
                 GameObject currentObject = preFab;
                 
                 // Position
@@ -50,8 +56,10 @@ public class ParticleWindManager: MonoBehaviour
                 Vector3 rotation = new Vector3(currentObject.transform.localRotation.x, Random.Range(0, 360), currentObject.transform.localRotation.z);
 
                 GameObject go = (GameObject)Instantiate(currentObject, pos, Quaternion.Euler(rotation));
-                go.transform.parent = gameObject.transform;
-                allBoids[i] = go;
+                no.gameObject = go;
+                no.originalPosition = pos;
+                allBoids[i] = no;
+                allBoids[i].gameObject.transform.parent = gameObject.transform;
             }
         }
     }
@@ -60,5 +68,30 @@ public class ParticleWindManager: MonoBehaviour
     void Update()
     {
         isRunning = prefabManager.isRunning;
+        if (isRunning)
+        {
+            for (int i=0; i < allBoids.Length; i++)
+            {
+                float x1 = Mathf.PerlinNoise(allBoids[i].x, 0) * distanceScalar;
+                float z1 = Mathf.PerlinNoise(allBoids[i].z, 0) * distanceScalar;
+
+                Vector3 pos = new Vector3(allBoids[i].originalPosition.x - x1,
+                                          allBoids[i].gameObject.transform.position.y,
+                                          allBoids[i].originalPosition.z - z1);
+
+                allBoids[i].gameObject.transform.position = pos;
+
+                allBoids[i].x += interval;
+                allBoids[i].z += interval;
+            }
+        }
+    }
+
+    public class NewObj
+    {
+        public GameObject gameObject { get; set; }
+        public float x { get; set; }
+        public float z { get; set; }
+        public Vector3 originalPosition { get; set; }
     }
 }
