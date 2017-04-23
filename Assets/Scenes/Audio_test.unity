@@ -91,7 +91,7 @@ NavMeshSettings:
     cellSize: 0.16666667
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &371993383
+--- !u!1001 &1159097812
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -128,12 +128,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013128105552, guid: 45c6979a13c923f4c8d290f10a30487c, type: 2}
       propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010645039720, guid: 45c6979a13c923f4c8d290f10a30487c,
-        type: 2}
-      propertyPath: useAudioClips
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 45c6979a13c923f4c8d290f10a30487c, type: 2}
@@ -406,7 +401,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012440364890, guid: 8baada4fe4c434b43bbe2bd3738b5cff, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8baada4fe4c434b43bbe2bd3738b5cff, type: 2}

@@ -22,26 +22,19 @@ public class PhyllotaxisManager : MonoBehaviour {
             float x = r * Mathf.Cos(a);
             float z = r * Mathf.Sin(a);
 
-            Vector3 pos = new Vector3(x, 3, z);
-
-            // Rotation
-            Vector3 xaxis = new Vector3(1,0,0);
-
-            //Vector3 difference = pos - xaxis;
-            //float anglec = Vector3.Angle(Vector3.right, difference);
-            float angleb = Vector3.Angle(pos, xaxis);
-            Vector3 raxis = Vector3.Cross(xaxis,pos);
-            Vector3 rotation = new Vector3(raxis.x, raxis.y , raxis.z);
+            Vector3 pos = new Vector3(x, 2.5F, z);
 
             allBoids[i] = (GameObject)Instantiate(preFab, pos, Quaternion.identity);
-            allBoids[i].transform.Rotate(rotation, angleb);
             allBoids[i].transform.parent = gameObject.transform;
+
+            Vector3 newDir = Vector3.RotateTowards(pos, new Vector3(0, 0, 0), 0, 0);
+            Debug.DrawRay(allBoids[i].transform.position, newDir, Color.red);
+            allBoids[i].transform.rotation = Quaternion.LookRotation(newDir);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
 }

@@ -139,12 +139,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3809841c5012f3c44be2894e9c299ce0, type: 3}
   - {fileID: 8300000, guid: 81c7d7fa5a614874b8db5da673e288f1, type: 3}
   preFabArray:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  audioClipLength: 30
+  - {fileID: 1000010881310588, guid: 8baada4fe4c434b43bbe2bd3738b5cff, type: 2}
+  - {fileID: 1052743518365738, guid: e5a0751d4ccfb1141946aae603caa04a, type: 2}
+  - {fileID: 1000010521586404, guid: e44fbc960ffee514fb98ce97946ce55b, type: 2}
+  - {fileID: 1462413490510168, guid: 3c85e5e4fee8a694fb8c575922f642e3, type: 2}
+  - {fileID: 1886902126907314, guid: d6e47fdc625efff4098f91724a74297b, type: 2}
+  audioClipLength: 5
   useAudioClips: 0
+  timeCounter: 0
   currentRange: 0
   spectrum: []
+  audioIndex: 0

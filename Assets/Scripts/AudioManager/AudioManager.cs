@@ -10,24 +10,51 @@ public class AudioManager : MonoBehaviour
 
     AudioSource audio;
     public bool useAudioClips = false;
-    private float timeCounter = 0F;
+    public float timeCounter = 0F;
     public float currentRange = 0F;
     public float[] spectrum;
+    public int audioIndex = 0;
 
     // Use this for initialization
     void Start()
     {
         audio = this.GetComponent<AudioSource>();
+        spectrum = new float[1024];
 
+        //if (useAudioClips)
+        //{
+        //    InvokeRepeating("ChooseAudioClip", 0, audioClipLength);
+        //}
         if (useAudioClips)
         {
-            InvokeRepeating("ChooseAudioClip", 0, audioClipLength);
+            ChooseAudioClip();
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (useAudioClips)
+        {
+            if (timeCounter > audioClipLength)
+            {
+                // Reset timer
+                timeCounter = 0.0F;
+
+                if (audioIndex == audioClipArray.Length - 1)
+                {
+                    audioIndex = 0;
+                }
+                else
+                {
+                    audioIndex++;
+                }
+                audio.Stop();
+                ChooseAudioClip();
+                audio.Play();
+            }
+        }
+
         //if (useAudioClips)
         //{
         //    if (timeCounter > randomTime)
@@ -39,11 +66,6 @@ public class AudioManager : MonoBehaviour
         //        ChooseAudioClip();
         //        audio.Play();
         //    }
-        //}
-
-        //if (timeCounter > audioClipLength)
-        //{
-        //    timeCounter = 0.0F;
         //}
 
         //// Fade in current clip
@@ -92,12 +114,11 @@ public class AudioManager : MonoBehaviour
         }
 
         audio.Stop();
-        int randomIndex = Random.Range(0, audioClipArray.Length);
-        Debug.Log(randomIndex);
-        if (randomIndex <= audioClipArray.Length - 1)
+        //audioIndex = Random.Range(0, audioClipArray.Length);
+        if (audioIndex <= audioClipArray.Length - 1)
         {
-            audio.clip = audioClipArray[randomIndex];
-            preFabArray[randomIndex].GetComponent<PreFabManager>().isRunning = true;
+            audio.clip = audioClipArray[audioIndex];
+            preFabArray[audioIndex].GetComponent<PreFabManager>().isRunning = true;
         }
         else
         {

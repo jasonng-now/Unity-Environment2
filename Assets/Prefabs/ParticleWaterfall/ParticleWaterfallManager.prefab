@@ -228,11 +228,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cd4e49bd817afe49993ed0fb7e6a76c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preFab: {fileID: 1657097269319528, guid: dfbd454b26d1bb24eab965438e7a865a, type: 2}
+  preFabSmall: {fileID: 0}
+  preFabLarge: {fileID: 0}
   c: 2.5
   itemCount: 10
-  emitScalar: 10000
-  sizeScalar: 10
+  emitScalar: 0
+  sizeScalar: 3
   gravityScalar: 3.5
   sceneScale: 1
   isRunning: 0
@@ -247,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78e7399af4b98e4fb25d673c5a1ceda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isRunning: 1
+  isRunning: 0
 --- !u!114 &114855418516949998
 MonoBehaviour:
   m_ObjectHideFlags: 1

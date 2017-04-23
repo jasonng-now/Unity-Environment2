@@ -34,32 +34,59 @@ public class ParticleWindManager: MonoBehaviour
         // Particle scale
         sceneScale = (gameObject.transform.parent == null) ? 1F : gameObject.transform.parent.transform.localScale.x;
 
-        List<Vector2> ordered = new List<Vector2>();
-        PoissonDisc pd = new PoissonDisc();
-        ordered = pd.GetOrderedPositions(PDWidth, PDHeight, PDRadius, itemCount);
-        allBoids = new NewObj[ordered.Count];
+        // Single item, place at the game object position
 
-        for (int i = 0; i < ordered.Count; i++)
+        if (itemCount == 1)
         {
-            if (ordered[i] != Vector2.zero)
+            allBoids = new NewObj[itemCount];
+            GameObject currentObject = preFab;
+
+            NewObj no = new NewObj();
+            int i = 0;
+            no.x = i * 10;
+            no.z = i * 50;
+
+            // Position
+            Vector3 pos = gameObject.transform.position;
+
+            GameObject go = (GameObject)Instantiate(currentObject, pos, Quaternion.identity);
+
+            no.gameObject = go;
+            no.originalPosition = pos;
+            allBoids[i] = no;
+            allBoids[i].gameObject.transform.parent = gameObject.transform;
+        }
+        else
+        {
+            List<Vector2> ordered = new List<Vector2>();
+            PoissonDisc pd = new PoissonDisc();
+            ordered = pd.GetOrderedPositions(PDWidth, PDHeight, PDRadius, itemCount);
+            allBoids = new NewObj[ordered.Count];
+
+            for (int i = 0; i < ordered.Count; i++)
             {
-                NewObj no = new NewObj();
-                no.x = i * 10;
-                no.z = i * 50;
+                if (ordered[i] != Vector2.zero)
+                {
+                    NewObj no = new NewObj();
+                    no.x = i * 10;
+                    no.z = i * 50;
 
-                GameObject currentObject = preFab;
-                
-                // Position
-                Vector3 pos = new Vector3(ordered[i].x * sceneScale, gameObject.transform.position.y, ordered[i].y * sceneScale);
+                    GameObject currentObject = preFab;
 
-                // Rotation
-                Vector3 rotation = new Vector3(currentObject.transform.localRotation.x, Random.Range(0, 360), currentObject.transform.localRotation.z);
+                    // Position
+                    Vector3 pos = new Vector3(ordered[i].x * sceneScale, gameObject.transform.position.y, ordered[i].y * sceneScale);
+                    pos = pos + gameObject.transform.position;
 
-                GameObject go = (GameObject)Instantiate(currentObject, pos, Quaternion.Euler(rotation));
-                no.gameObject = go;
-                no.originalPosition = pos;
-                allBoids[i] = no;
-                allBoids[i].gameObject.transform.parent = gameObject.transform;
+
+                    // Rotation
+                    Vector3 rotation = new Vector3(currentObject.transform.localRotation.x, Random.Range(0, 360), currentObject.transform.localRotation.z);
+
+                    GameObject go = (GameObject)Instantiate(currentObject, pos, Quaternion.Euler(rotation));
+                    no.gameObject = go;
+                    no.originalPosition = pos;
+                    allBoids[i] = no;
+                    allBoids[i].gameObject.transform.parent = gameObject.transform;
+                }
             }
         }
     }
@@ -78,6 +105,7 @@ public class ParticleWindManager: MonoBehaviour
                 Vector3 pos = new Vector3(allBoids[i].originalPosition.x - x1,
                                           allBoids[i].gameObject.transform.position.y,
                                           allBoids[i].originalPosition.z - z1);
+                pos = pos + new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z);
 
                 allBoids[i].gameObject.transform.position = pos;
 
